@@ -29,7 +29,7 @@ body {
 
 
 
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 680px) {
 	/* For tablets: */
 	.col-s-1 {width: 8.33%;}
 	.col-s-2 {width: 16.66%;}
@@ -45,7 +45,7 @@ body {
 	.col-s-12 {width: 100%;}
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (min-width: 968px) {
 	/* For desktop: */
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
@@ -73,6 +73,27 @@ body {
 	text-align: center;
 	font-size: 12px;
 	width: 100%;
+}
+
+
+div.changingFontSize {
+	font-size: defualt;
+}
+
+@media only screen and (max-width: 968px) {
+	
+	div.changingFontSize {
+		font-size: 12;
+		
+	}
+}
+
+@media only screen and (max-width: 680px ) {
+	
+	div.changingFontSize {
+		font-size: 16;
+		
+	}
 }
 	
 

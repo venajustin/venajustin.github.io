@@ -96,9 +96,7 @@ img {
 	
 }
 
-.infoblock > table {
-	
-}
+
 
 h2 {
 	margin-bottom: 3px;
@@ -115,8 +113,25 @@ h4 {
 	padding: 0;
 }
 
-.peeta {
-	width: 40%;
+.grid-container {
+	display: grid;
+	grid-template-columns: 49% 2% 49%;
+	justify-content:center;
+	
+}
+
+.small-padding {
+	padding:4;
+	
+}
+
+
+
+#vert-line {
+	background-color: white;
+	height: 100%;
+	width: 3px;
+	margin: auto;
 }
 
 
