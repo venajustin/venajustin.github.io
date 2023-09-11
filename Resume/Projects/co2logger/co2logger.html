@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<title>
+			Justin's Projects
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../../layout.css">
+		<link rel="stylesheet" href="co2Content.css">
+	</head>
+	<body>
+		<div class="row">
+			<div class="col-3 col-s-3">
+				<div class="whiteBox row">
+
+						<a href="../../index.html" style="text-decoration:none">
+							<div id="back-button">
+								<h2>Back</h2>
+								<p1>to Resume</p1>
+							</div>
+						</a>
+
+
+						<h2>Projects </h2>
+						<h3> CO<sub>2</sub> Sensor & Logger</h3>
+
+				</div>
+				<div class="whiteBox">
+
+					<h2>Projects</h2>
+
+
+					<div class="menu">
+						<ul>
+							<a href="./co2logger.html"><li id="current-selection">CO<sub>2</sub> Sensor & Logger</li></a>
+							<li>Project 2</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-9 col-s-9">
+				<div class="whiteBox">
+					<div class="row">
+						<div class="col-6 col-s-6 nomarg">
+							<h2> CO<sub>2</sub> Monitoring Project </h2>
+						</div>
+						<div class="col-6 col-s-6 nomarg" style="text-align:right">
+							<h4>Completed in March of 2019</h4>
+						</div>
+					</div>
+
+
+					<div class="row">
+						<div class="col-6 col-s-12">
+							<img src="assembledProject.png">
+						</div>
+						<div class="col-6 col-s-12">
+							<p1>
+								Completed as part of semester long science experiment project in high school.
+								My experiment was centered around the affects classroom ventilation had on the measured levels of Carbon Dioxide.
+								Many studies have shown the impact of high CO<sub>2</sub> levels on mental performance in the classroom or workplace.
+								My project involved measuring the levels of CO<sub>2</sub> in a classroom over multiple periods, using the time of day and number
+								of students present per period as independant variables.
+							</p1>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-s-12">
+							<p1>
+								In order to take these recordings, I constructed a CO<sub>2</sub> measuring and logging device.
+								Inside a protective box I used an Audrino uno to host C++ code controlling a CO<sub>2</sub> measuring module,
+								a time module, and a sd card module. Because of time constraints a bread-board was used for connecting these components.
+								The completed system and wiring diagram can be seen below.
+							</p1>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-6 col-s-6">
+							<img src="wiringDiagram.png">
+						</div>
+						<div class="col-6 col-s-6">
+							<img src="insideBox.png">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12 col-s-12">
+							<p1>
+								Using Audrino C++, the CO<sub>2</sub> module was prompted to make recordings every 5 minutes.
+								These were then stored to a file on the inserted SD card. All recordings were stored along with
+								accurate times measured from the clock module. A copy of the code can be found <a href="cppcode.txt">here</a>.
+							</p1>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+		<div class="footer">
+			<p1>
+				This site was coded by me and is mobile freindly as well!
+			</p1>
+		</div>
+
+	</body>
+
+
+</html>

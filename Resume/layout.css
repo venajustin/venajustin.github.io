@@ -8,7 +8,7 @@ html {
 
 body {
 	background-color: E0E0E0;
-	
+
 }
 
 .row::after {
@@ -21,7 +21,6 @@ body {
 
 
 [class*="col-"] {
-  
   float: left;
   width:100%;
   padding: 15px;
@@ -66,13 +65,14 @@ body {
 
 .footer {
 
-	
+
 	background-color:#020202;
 	padding: 15px;
 	color: #ffffff;
 	text-align: center;
 	font-size: 12px;
 	width: 100%;
+
 }
 
 
@@ -81,19 +81,94 @@ div.changingFontSize {
 }
 
 @media only screen and (max-width: 968px) {
-	
+
 	div.changingFontSize {
 		font-size: 12;
-		
+
 	}
 }
 
 @media only screen and (max-width: 680px ) {
-	
+
 	div.changingFontSize {
 		font-size: 16;
-		
+
 	}
 }
-	
 
+img {
+	width:100%;
+	height: auto;
+}
+
+.menu ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.menu ul > a {
+	text-decoration: none;
+}
+
+.menu li {
+	padding: 8px;
+	margin-bottom: 7px;
+	background-color: #A8DFFF;
+	color: #000000;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu li:hover {
+	background-color: #33b5e5;
+	color: #ffffff;
+}
+
+#current-selection {
+	margin-left: 30px;
+
+}
+
+.whiteBox {
+	background-color: white;
+	border-radius: 15px;
+	padding: 15px;
+
+	margin-bottom: 30;
+
+
+}
+
+.heading {
+	margin: 3px;
+
+	font-weight: bold;
+	font-size: 24;
+	padding-top: 5;
+}
+
+.whitebox > hr {
+	color: #A8DFFF;
+}
+
+#back-button {
+	background-color: A8DFFF;
+	max-width: 150;
+	padding: 15px;
+	border-radius: 15px;
+}
+#back-button * {
+	color: #000000;
+}
+
+#back-button h2 {
+	margin:0;
+	padding: 0;
+}
+#back-button:hover {
+	background-color: #33b5e5;
+	color: #ffffff;
+}
+#back-button:hover * {
+	color: #ffffff;
+}

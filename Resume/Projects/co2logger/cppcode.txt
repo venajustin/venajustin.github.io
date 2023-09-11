@@ -1,0 +1,136 @@
+/*
+Code for an Arduino Uno.
+writes the CO2 ppm and time in hour, minute, second every five minutes to a micro sd card.
+all lines with "//" in front of them are comments, not code.
+This code writes a CO2 measurement with the appropriate time it was taken, to an SD card.
+It uses a Senserion CO2, temp and humidity sensor; a real time clock module; and a SD card read/write module.
+The wiring for an arduino uno is as such:  RTC and Senserion are wired to SDA and SCL on the board.  The led has a line
+going through a resistor and to the pin 8 The SD card module has pins as such:
+VCC -> 5v
+CS -> 4
+DI -> ~11
+SCK -> 13
+DO -> 12
+CD -> ~9
+GND -> GND(ground)
+*/
+//Including the necessary libraries of script
+#include <SparkFunDS1307RTC.h>
+#include <Wire.h>
+#include <SD.h>
+#include <SPI.h>
+
+#include "SparkFun_SCD30_Arduino_Library.h"  //Click here to get the library: //http://librarymanager/All#SparkFun_SCD30
+
+#define PRINT_USA_DATE //to make it print month before date
+
+File myFile;
+//sets up the pin for CS on SDmod
+int pinCS = 4; // Pin for talking serial com for sensirion and RTC
+int ledPin = 8; // Setting led pin
+
+SCD30 airSensor;
+
+void setup()
+{
+  Wire.begin();
+
+  // sets up speed of serial
+  Serial.begin(9600);
+  //  Serial.println("Lets go...");
+
+  //Sets the CS pin as an output
+  pinMode(pinCS, OUTPUT);
+  pinMode(ledPin, OUTPUT);  // Sets LED as output
+
+  rtc.begin();  //starts up the real time clock module
+
+  // SD Card Initialization
+  if (SD.begin())
+  {
+    Serial.println("SD card is ready to use.");     //prints confirmation if connected to computer
+  } else
+  {
+    Serial.println("SD card initialization failed"); // prints error if connected to computer
+    return;
+  }
+
+  rtc.update(); //starts up the real time clock
+
+  // Create/Open file in SD
+  myFile = SD.open("test.txt", FILE_WRITE);
+
+  // if the file opened okay, write to it:
+  if (myFile) {
+    // Serial.println("Writing to File...");
+    // Write to file
+    myFile.println("New Entry " + String(rtc.month()) + "/" +   // Print month
+    String(rtc.date()) + "/" + String(rtc.year()));  // Print date
+    myFile.close(); // close the file
+    //Serial.println("Done.");
+  }
+  // if the file didn't open, print an error:
+  else {
+    Serial.println("error opening test.txt");  //prints an error if connected to computer
+  }
+
+  /*
+  //the following code reads the file to the the screen if connected to a computer
+  myFile = SD.open("test.txt");
+  if (myFile) {
+    Serial.println("Read:");
+    // Reading the whole file
+    while (myFile.available()) {
+      Serial.write(myFile.read());
+   }
+    myFile.close(); // closes sd file
+  }
+  else {
+    Serial.println("error opening test.txt");  // prints an error if connected to computer
+  }
+  */  
+  airSensor.begin(); //This will cause readings to occur every two seconds
+
+}
+
+void loop()
+{
+  rtc.update();  //Updates Real Time Clock
+
+  myFile = SD.open("test.txt", FILE_WRITE);  //Opens data file
+  // Now check to see if data file opened correctly
+  if (myFile) {
+    //recording date + time
+    myFile.print(String(rtc.date()) + ", "); //records date
+    myFile.print(String(rtc.hour()) + ":");  //Records hour
+    if (rtc.minute() < 10)
+      myFile.print('0'); // Record leading '0' for minute
+    myFile.print(String(rtc.minute()) + ":"); // Print minute
+    if (rtc.second() < 10)
+      myFile.print('0'); // Print leading '0' for second
+    myFile.print(String(rtc.second()) + ", "); // Print second
+
+    //recording data
+    if (airSensor.dataAvailable())
+    {
+      myFile.println(airSensor.getCO2()); //records CO2 reading and puts to file
+    }
+    else {
+      myFile.println("no data");
+    }
+    myFile.close(); //closes file
+  }
+  else {
+    Serial.println("failed to record data");  //prints an error if plugged into computer
+  };
+
+  int i; //variable used in the for loop to blink light
+
+  for (i = 0; i < 61; i++) {  // a loop that will take five minutes long
+    delay (4500);                  // wait for and a half seconds
+    digitalWrite(ledPin, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(500);                   // wait for half a second
+    digitalWrite(ledPin, LOW);    // turn the LED off by making the voltage LOW
+  }
+
+}
